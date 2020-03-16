@@ -29,7 +29,6 @@ public class QuantityMeasurementTest {
         Assert.assertEquals(result, result1, 0.0);
     }
 
-
     @Test
     public void givenQuantityMesurmentForRefranceCheck_WhenCorrect_ShouldReturn_CorrectFeet() {
         double result = measurement.unitValueCheck(UnitCheck.FEETUNIT, 0.0);
@@ -37,11 +36,10 @@ public class QuantityMeasurementTest {
         Assert.assertEquals(result, result1, 0.0);
     }
 
-
     @Test
     public void givenQuantityMesurmentForTypeCheck_WhenCorrect_ShouldReturn_CorrectFeet() {
-        double result = measurement.unitValueCheck(UnitCheck.FEETUNIT, 0.0);
-        double result1 = measurement.unitValueCheck(UnitCheck.FEETUNIT, 0.0);
+        double result = measurement.unitValueCheck(UnitCheck.FEETUNIT, 5.0);
+        double result1 = measurement.unitValueCheck(UnitCheck.FEETUNIT, 5.0);
         Assert.assertEquals(result, result1, 0.0);
 
     }
@@ -73,14 +71,12 @@ public class QuantityMeasurementTest {
         Assert.assertEquals(result, result1, 0.0);
     }
 
-
     @Test
     public void givenQuantityMesurmentForRefranceCheckInInch_WhenCorrect_ShouldReturn_CorrectFeet() {
         double result = measurement.unitValueCheck(INCHUNIT, 0.0);
         double result1 = measurement.unitValueCheck(INCHUNIT, 0.0);
         Assert.assertEquals(result, result1, 0.0);
     }
-
 
     @Test
     public void givenQuantityMesurmentForTypeCheckInInch_WhenCorrect_ShouldReturn_CorrectFeet() {
