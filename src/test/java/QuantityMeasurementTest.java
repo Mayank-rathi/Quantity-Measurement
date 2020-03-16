@@ -91,5 +91,31 @@ public class QuantityMeasurementTest {
         double result1 = measurement.unitValueCheck(INCHUNIT, 0.0);
         Assert.assertEquals(result, result1, 0.0);
     }
+
+    @Test
+    public void givenQuantityMesurmentFor1ftNotEqualTo1In_WhenCorrect_ShouldReturn_CorrectResult() {
+        double feetvalue = measurement.unitValueCheck(UnitCheck.FEETUNIT, 1.0);
+        double inchValue = measurement.unitValueCheck(INCHUNIT, 1.0);
+        Assert.assertNotEquals(feetvalue, inchValue, 0.0);
+    }
+
+    @Test
+    public void givenQuantityMesurmentFor1InchNotEqualTo1ft_WhenCorrect_ShouldReturn_CorrectResult() {
+        double inchValue = measurement.unitValueCheck(INCHUNIT, 1.0);
+        double feetvalue = measurement.unitValueCheck(UnitCheck.FEETUNIT, 1.0);
+        Assert.assertNotEquals(feetvalue, inchValue, 0.0);
+    }
+
+    @Test
+    public void givenQuantityMesurmentFor1ftEqualsTo12inch_WhenCorrect_ShouldReturn_CorrectResult() {
+        double inchValue = measurement.unitValueCheck(UnitCheck.FEETUNIT, 1.0);
+        Assert.assertEquals(12, inchValue, 0.0);
+    }
+
+    @Test
+    public void givenQuantityMesurmentFor12InchEqualTo1ft_WhenCorrect_ShouldReturn_CorrectResult() {
+        double feetValue = measurement.unitValueCheck(INCHUNIT, 12.0);
+        Assert.assertEquals(1, feetValue, 0.0);
+    }
 }
 
