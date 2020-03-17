@@ -1,8 +1,8 @@
 package com.quantityMesurment;
 
 public class QuantityMeasurement {
-    public Double fistValue;
-    public Double secondValue;
+    public double fistValue;
+    public double secondValue;
 
     @Override
     public boolean equals(Object o) {

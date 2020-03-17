@@ -4,8 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.quantityMesurment.UnitCheck.FEETUNIT;
-import static com.quantityMesurment.UnitCheck.INCHUNIT;
+import static com.quantityMesurment.UnitCheck.*;
 
 public class QuantityMeasurementTest {
 
@@ -117,5 +116,37 @@ public class QuantityMeasurementTest {
         double feetValue = measurement.unitValueCheck(INCHUNIT, 12.0);
         Assert.assertEquals(1, feetValue, 0.0);
     }
+
+    @Test
+    public void givenQuantityMesurmentFor3ftTo1Yard_WhenCorrect_ShouldReturn_CorrectResult() {
+        double feetValue = measurement.unitValueCheck(FEET_TO_YARD, 3.0);
+        Assert.assertEquals(1, feetValue, 0.0);
+    }
+
+    @Test
+    public void givenQuantityMesurmentFor1ftNotEqualTo1Yard_WhenCorrect_ShouldReturn_CorrectResult() {
+        double feetValue = measurement.unitValueCheck(FEETUNIT, 1.0);
+        double oneFeetToYard = measurement.unitValueCheck(YARDSUNIT, 1.0);
+        Assert.assertNotEquals(feetValue, oneFeetToYard, 0.0);
+    }
+
+    @Test
+    public void givenQuantityMesurmentFor1InchNotEqualTo1Yard_WhenCorrect_ShouldReturn_CorrectResult() {
+        double inchValue = measurement.unitValueCheck(INCHUNIT, 1.0);
+        double oneFeetToYard = measurement.unitValueCheck(YARDSUNIT, 1.0);
+        Assert.assertNotEquals(inchValue, oneFeetToYard, 0.0);
+    }
+
+    @Test
+    public void givenQuantityMesurmentFor1YardEqualsTo36Inch_WhenCorrect_ShouldReturn_CorrectResult() {
+        double oneFeetToYard = measurement.unitValueCheck(YARDSUNIT, 1.0);
+        Assert.assertEquals(36, oneFeetToYard, 0.0);
+    }
+    @Test
+    public void givenQuantityMesurmentFor1YardEqualsTo3ft_WhenCorrect_ShouldReturn_CorrectResult() {
+        double oneYardToFeet = measurement.unitValueCheck(YARDSUNIT, 1.0);
+        Assert.assertEquals(3, oneYardToFeet, 0.0);
+    }
+
 }
 
