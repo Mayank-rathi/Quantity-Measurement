@@ -1,21 +1,33 @@
 package com.quantityMesurment;
 
+
 public class QuantityMeasurement {
-    public double fistValue;
-    public double secondValue;
+    private UnitType unitType;
+    private double quantiity;
+
+    public QuantityMeasurement(UnitType unitType, double quantiity) {
+        this.unitType = unitType;
+        this.quantiity = quantiity;
+    }
+
+
+    public double convert(QuantityMeasurement quantityMeasurement) {
+        return quantityMeasurement.quantiity * quantityMeasurement.unitType.value / this.unitType.value;
+    }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        QuantityMeasurement that = (QuantityMeasurement) o;
-        return fistValue == that.fistValue &&
-                secondValue == that.secondValue;
+        if (!(o instanceof QuantityMeasurement)) return false;
+        QuantityMeasurement quantityMeasurement = (QuantityMeasurement) o;
+        return this.compare(quantityMeasurement);
     }
 
-    public double unitValueCheck(UnitCheck unit, double value) {
-        return value * unit.value;
+    private boolean compare(QuantityMeasurement quantityMeasurement) {
+        if (this.unitType.equals(quantityMeasurement.unitType))
+            return Double.compare(this.quantiity, quantityMeasurement.quantiity) == 0;
+        double convertValue = this.convert(quantityMeasurement);
+        return Double.compare(this.quantiity, Math.floor(convertValue)) == 0;
     }
-
-
 }
+
