@@ -29,12 +29,11 @@ public class QuantityMeasurement {
         return addition;
     }
 
-    private boolean compare(QuantityMeasurement quantityMeasurement) {
+    public boolean compare(QuantityMeasurement quantityMeasurement) {
         if (this.unitType.equals(quantityMeasurement.unitType))
             return Double.compare(this.quantiity, quantityMeasurement.quantiity) == 0;
         double convertValue = this.convert(quantityMeasurement);
         return Double.compare(this.quantiity, Math.floor(convertValue)) == 0;
     }
-
 }
 
