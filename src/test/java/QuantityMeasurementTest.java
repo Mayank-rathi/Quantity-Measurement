@@ -156,5 +156,21 @@ public class QuantityMeasurementTest {
         double addition = inch.additionOfTwoUnits(cm, inch, null);
         Assert.assertEquals(3, addition, 0.0);
     }
+
+    @Test
+    public void givenGallonAndLitres_WhenEqual_ShouldReturnTrue() {
+        QuantityMeasurement gallon = new QuantityMeasurement(UnitType.GALLON, 1);
+        QuantityMeasurement litre = new QuantityMeasurement(UnitType.LITER, 3.78);
+        boolean compareCheck = gallon.equals(litre);
+        Assert.assertTrue(compareCheck);
+    }
+
+    @Test
+    public void givenLitresAndMl_WhenEqual_ShouldReturnTrue() {
+        QuantityMeasurement gallon = new QuantityMeasurement(UnitType.GALLON, 1);
+        QuantityMeasurement ml = new QuantityMeasurement(UnitType.ML, 3.78);
+        boolean compareCheck = gallon.equals(ml);
+        Assert.assertTrue(compareCheck);
+    }
 }
 
