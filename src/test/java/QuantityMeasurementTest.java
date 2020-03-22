@@ -5,7 +5,6 @@ import org.junit.Test;
 
 public class QuantityMeasurementTest {
 
-
     @Test
     public void givenFeetZero_ShoulfReturnZero() {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(UnitType.FEET, 1.00);
@@ -168,9 +167,41 @@ public class QuantityMeasurementTest {
     @Test
     public void givenLitresAndMl_WhenEqual_ShouldReturnTrue() {
         QuantityMeasurement gallon = new QuantityMeasurement(UnitType.GALLON, 1);
-        QuantityMeasurement ml = new QuantityMeasurement(UnitType.ML, 3.78);
-        boolean compareCheck = gallon.equals(ml);
+        QuantityMeasurement liter = new QuantityMeasurement(UnitType.LITER, 3.78);
+        double compareCheck = gallon.additionOfTwoUnits(gallon, liter, null);
+        Assert.assertEquals(7.56, compareCheck, 0.0);
+    }
+
+    @Test
+    public void givenAdditionOfGallonAndLitre_WhenEqual_ShouldReturnTrue() {
+        QuantityMeasurement liter = new QuantityMeasurement(UnitType.LITER, 1.0);
+        QuantityMeasurement ml = new QuantityMeasurement(UnitType.ML, 1000.0);
+        double compareCheck = liter.additionOfTwoUnits(liter, ml, null);
+        Assert.assertEquals(2, compareCheck, 0.0);
+    }
+
+    @Test
+    public void given1KgAnd1000Gm_ShouldReturnTrue() {
+        QuantityMeasurement kg = new QuantityMeasurement(UnitType.KG, 1.0);
+        QuantityMeasurement gram = new QuantityMeasurement(UnitType.GRAM, 1000.0);
+        boolean compareCheck = kg.compare(gram);
         Assert.assertTrue(compareCheck);
+    }
+
+    @Test
+    public void given1TonneAnd1000Kg_ShouldReturnTrue() {
+        QuantityMeasurement tonne = new QuantityMeasurement(UnitType.TONNE, 1.0);
+        QuantityMeasurement kg = new QuantityMeasurement(UnitType.KG, 1000.0);
+        boolean compareCheck = tonne.compare(kg);
+        Assert.assertTrue(compareCheck);
+    }
+
+    @Test
+    public void given1TonneAnd1000Gram_ShouldReturn1001Kg() {
+        QuantityMeasurement tonne = new QuantityMeasurement(UnitType.TONNE, 1.0);
+        QuantityMeasurement gram = new QuantityMeasurement(UnitType.GRAM, 1000.0);
+        double add = tonne.additionOfTwoUnits(tonne, gram, null);
+        Assert.assertEquals(1001, add, 0.0);
     }
 }
 
