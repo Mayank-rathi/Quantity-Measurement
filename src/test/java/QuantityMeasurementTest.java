@@ -203,5 +203,36 @@ public class QuantityMeasurementTest {
         double add = tonne.additionOfTwoUnits(tonne, gram, null);
         Assert.assertEquals(1001, add, 0.0);
     }
+    @Test
+    public void given1FeetAnd1000Gram_ShouldReturnFalse() {
+        QuantityMeasurement feet = new QuantityMeasurement(UnitType.FEET, 1.0);
+        QuantityMeasurement gram = new QuantityMeasurement(UnitType.GRAM, 1000.0);
+        boolean compareCheck = feet.compare(gram);
+        Assert.assertFalse(compareCheck);
+    }
+
+    @Test
+    public void given0CelsiusAnd0Celsius_ShouldReturnTrue() {
+        QuantityMeasurement celsius1 = new QuantityMeasurement(UnitType.CELSIUS, 0.0);
+        QuantityMeasurement celsius2 = new QuantityMeasurement(UnitType.CELSIUS, 0.0);
+        boolean compareCheck = celsius1.compare(celsius2);
+        Assert.assertTrue(compareCheck);
+    }
+
+    @Test
+    public void given0CelsiusAnd1Celsius_ShouldReturnFalse() {
+        QuantityMeasurement celsius1 = new QuantityMeasurement(UnitType.CELSIUS, 0.0);
+        QuantityMeasurement celsius2 = new QuantityMeasurement(UnitType.CELSIUS, 1.0);
+        boolean compareCheck = celsius1.compare(celsius2);
+        Assert.assertFalse(compareCheck);
+    }
+
+    @Test
+    public void given212FahrenheitAnd100DegreeCelsius_WhenEqual_ShouldReturnTrue() {
+        QuantityMeasurement fahrenheit = new QuantityMeasurement(UnitType.FAHRENHEIT, 212.0);
+        QuantityMeasurement celsius = new QuantityMeasurement(UnitType.CELSIUS, 100.0);
+        boolean compareCheck = fahrenheit.compare(celsius);
+        Assert.assertTrue(compareCheck);
+    }
 }
 

@@ -30,10 +30,10 @@ public class QuantityMeasurement {
     }
 
     public boolean compare(QuantityMeasurement quantityMeasurement) {
-        if (this.unitType.equals(quantityMeasurement.unitType))
-            return Double.compare(this.quantiity, quantityMeasurement.quantiity) == 0;
-        double convertValue = this.convert(quantityMeasurement);
-        return Double.compare(this.quantiity, Math.floor(convertValue)) == 0;
+        if (unitType.equals(quantityMeasurement.unitType))
+            return Double.compare(quantiity, quantityMeasurement.quantiity) == 0;
+        double convertValue = convert(quantityMeasurement);
+        return Double.compare(quantiity, Math.floor(convertValue)) == 0;
     }
 }
 

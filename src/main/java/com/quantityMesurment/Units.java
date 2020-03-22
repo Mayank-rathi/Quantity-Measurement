@@ -1,5 +1,5 @@
 package com.quantityMesurment;
 
 public enum Units {
-    LENGTH,INCH,LITER,TEMPERATURE;
+    LENGTH, WEIGHT, VOLUME,TEMPERATURE;
 }
