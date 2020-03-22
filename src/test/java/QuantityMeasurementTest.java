@@ -77,45 +77,84 @@ public class QuantityMeasurementTest {
 
     @Test
     public void givenQuantityMesurmentFor3ftTo1Yard_WhenCorrect_ShouldReturn_CorrectResult() {
-        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(UnitType.FEET, 3.00);
-        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(UnitType.YARD, 1.00);
-        Assert.assertEquals(quantityMeasurement, quantityMeasurement1);
+        QuantityMeasurement feet = new QuantityMeasurement(UnitType.FEET, 3.00);
+        QuantityMeasurement yard = new QuantityMeasurement(UnitType.YARD, 1.00);
+        Assert.assertEquals(feet, yard);
     }
 
     @Test
     public void givenQuantityMesurmentFor1ftNotEqualTo1Yard_WhenCorrect_ShouldReturn_CorrectResult() {
-        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(UnitType.FEET, 1.00);
-        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(UnitType.YARD, 1.00);
-        Assert.assertNotEquals(quantityMeasurement, quantityMeasurement1);
+        QuantityMeasurement feet = new QuantityMeasurement(UnitType.FEET, 1.00);
+        QuantityMeasurement yard = new QuantityMeasurement(UnitType.YARD, 1.00);
+        Assert.assertNotEquals(feet, yard);
     }
 
     @Test
     public void givenQuantityMesurmentFor1InchNotEqualTo1Yard_WhenCorrect_ShouldReturn_CorrectResult() {
-        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(UnitType.INCH, 1.00);
-        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(UnitType.YARD, 1.00);
-        Assert.assertNotEquals(quantityMeasurement, quantityMeasurement1);
+        QuantityMeasurement inch = new QuantityMeasurement(UnitType.INCH, 1.00);
+        QuantityMeasurement yard = new QuantityMeasurement(UnitType.YARD, 1.00);
+        Assert.assertNotEquals(inch, yard);
     }
 
     @Test
     public void givenQuantityMesurmentFor1YardEqualsTo36Inch_WhenCorrect_ShouldReturn_CorrectResult() {
-        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(UnitType.YARD, 1.00);
-        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(UnitType.INCH, 36.00);
-        Assert.assertNotEquals(quantityMeasurement, quantityMeasurement1);
+        QuantityMeasurement yard = new QuantityMeasurement(UnitType.YARD, 1.00);
+        QuantityMeasurement inch = new QuantityMeasurement(UnitType.INCH, 36.00);
+        Assert.assertNotEquals(yard, inch);
     }
 
     @Test
     public void givenQuantityMesurmentFor1YardEqualsTo3ft_WhenCorrect_ShouldReturn_CorrectResult() {
-        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(UnitType.YARD, 1.00);
-        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(UnitType.INCH, 3.00);
-        Assert.assertNotEquals(quantityMeasurement, quantityMeasurement1);
+        QuantityMeasurement yard = new QuantityMeasurement(UnitType.YARD, 1.00);
+        QuantityMeasurement inch = new QuantityMeasurement(UnitType.INCH, 3.00);
+        Assert.assertNotEquals(yard, inch);
     }
 
     @Test
     public void givenQuantityMesurmentFor2InTo5cm_WhenCorrect_ShouldReturn_CorrectResult() {
-        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(UnitType.INCH, 2.00);
-        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(UnitType.CENTIMETER, 5.00);
-        Assert.assertNotEquals(quantityMeasurement, quantityMeasurement1);
+        QuantityMeasurement inch = new QuantityMeasurement(UnitType.INCH, 2.00);
+        QuantityMeasurement cm = new QuantityMeasurement(UnitType.CENTIMETER, 5.00);
+        Assert.assertEquals(inch, cm);
     }
 
+    @Test
+    public void givenQuantityMesurmentForAdd2InTo2In_When4InchIsCorrect_ShouldReturn_CorrectResult() {
+        QuantityMeasurement inch = new QuantityMeasurement(UnitType.INCH, 2.00);
+        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.INCH, 2.00);
+        double addition = inch.additionOfTwoUnits(inch, inch1, null);
+        Assert.assertEquals(4.00, addition, 0.00);
+    }
+
+    @Test
+    public void givenQuantityMesurmentFor2InTo2In_WhenCorrect_ShouldReturn_CorrectResult() {
+        QuantityMeasurement inch = new QuantityMeasurement(UnitType.INCH, 2.00);
+        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.INCH, 2.00);
+        double addition = inch.additionOfTwoUnits(inch1, inch, null);
+        Assert.assertEquals(4, addition, 0.00);
+    }
+
+    @Test
+    public void givenQuantityMesurmentForAdd1FtAnd2Inch_When14InchIsCorrect_ShouldReturn_CorrectResult() {
+        QuantityMeasurement feet = new QuantityMeasurement(UnitType.FEET, 1.00);
+        QuantityMeasurement inch = new QuantityMeasurement(UnitType.INCH, 2.00);
+        double addition = feet.additionOfTwoUnits(feet, inch, null);
+        Assert.assertEquals(14, addition, 0.00);
+    }
+
+    @Test
+    public void givenQuantityMesurmentForAdd1FtAnd1Ft_When24InchIsCorrect_ShouldReturn_CorrectResult() {
+        QuantityMeasurement feet = new QuantityMeasurement(UnitType.FEET, 1.00);
+        QuantityMeasurement feet1 = new QuantityMeasurement(UnitType.FEET, 1.00);
+        double addition = feet.additionOfTwoUnits(feet1, feet, null);
+        Assert.assertEquals(24, addition, 0.00);
+    }
+
+    @Test
+    public void givenQuantityMesurmentForAdd2InchAnd2_5Cm_When3InchIsCorrect_ShouldReturn_CorrectResult() {
+        QuantityMeasurement inch = new QuantityMeasurement(UnitType.INCH, 2.00);
+        QuantityMeasurement cm = new QuantityMeasurement(UnitType.CENTIMETER, 2.5);
+        double addition = inch.additionOfTwoUnits(cm, inch, null);
+        Assert.assertEquals(3, addition, 0.0);
+    }
 }
 
